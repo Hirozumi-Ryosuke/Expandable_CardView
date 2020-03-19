@@ -1,7 +1,5 @@
 package com.Jao
 
-import android.os.Parcel
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +24,7 @@ class ExpandableCardViewAdapter(var items: MutableList<Item>)
         val toggleImageView = v.item_toggle_button
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent?.context)
         var view: View? = null
 
@@ -38,7 +36,7 @@ class ExpandableCardViewAdapter(var items: MutableList<Item>)
         return ItemHolder(view!!)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val itemHolder = holder as? ItemHolder
         val item = items[position]
 
@@ -81,21 +79,6 @@ class ExpandableCardViewAdapter(var items: MutableList<Item>)
     override fun getItemCount(): Int = items.size
 
     override fun getItemViewType(position: Int): Int = items[position].type
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
 
-    }
 
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<ExpandableCardViewAdapter> {
-        override fun createFromParcel(parcel: Parcel): ExpandableCardViewAdapter {
-            return ExpandableCardViewAdapter(parcel)
-        }
-
-        override fun newArray(size: Int): Array<ExpandableCardViewAdapter?> {
-            return arrayOfNulls(size)
-        }
-    }
 }
