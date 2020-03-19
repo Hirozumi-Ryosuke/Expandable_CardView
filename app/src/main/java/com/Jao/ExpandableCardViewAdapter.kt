@@ -1,5 +1,7 @@
 package com.Jao
 
+import android.os.Parcel
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -79,4 +81,21 @@ class ExpandableCardViewAdapter(var items: MutableList<Item>)
     override fun getItemCount(): Int = items.size
 
     override fun getItemViewType(position: Int): Int = items[position].type
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<ExpandableCardViewAdapter> {
+        override fun createFromParcel(parcel: Parcel): ExpandableCardViewAdapter {
+            return ExpandableCardViewAdapter(parcel)
+        }
+
+        override fun newArray(size: Int): Array<ExpandableCardViewAdapter?> {
+            return arrayOfNulls(size)
+        }
+    }
 }
